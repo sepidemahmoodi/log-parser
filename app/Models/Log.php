@@ -2,6 +2,7 @@
 namespace App\Models;
 
 use App\Classes\RequestFilter\FilterClasses\LogFilter;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
@@ -9,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 
 class Log extends Model
 {
+    use HasFactory;
+
     protected $table = 'logs';
     protected $guarded = [];
 
