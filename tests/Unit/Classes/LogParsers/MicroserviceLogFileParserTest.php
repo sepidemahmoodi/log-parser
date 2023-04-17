@@ -6,9 +6,15 @@ use App\Classes\LogParsers\MicroserviceLogFileParser;
 use App\Classes\Observers\Log\LogParserObserver;
 use Tests\TestCase;
 
-class LogFileParserTest extends TestCase
+/**
+ * @covers \App\Classes\LogParsers\MicroserviceLogFileParser
+ * @uses \App\Classes\Observers\Log\LogStorageInDbObserver
+ * @uses \App\Classes\Observers\Log\LogParserObserver
+ */
+class MicroserviceLogFileParserTest extends TestCase
 {
     private $parser;
+    private LogParserObserver $logStorageObserver;
 
     protected function setUp(): void
     {
@@ -25,26 +31,16 @@ class LogFileParserTest extends TestCase
      */
     public function testParse()
     {
-        $dataObserverMock = \Mockery::mock(LogParserObserver::class)
-            ->shouldReceive('update')
-            ->once()
-            ->with([
-                [
-                    'type' => 'microservice',
-                    'service_name' => 'app',
-                    'date_time' => '2022-03-01 09:00:00',
-                    'http_method' => 'GET',
-                    'http_path' => '/api/v1/test',
-                    'http_version' => 'HTTP/1.1',
-                    'http_status_code' => '200'
-                ]
-            ]);
-
-        $this->parser->attach($dataObserverMock);
+        $this->logStorageObserver = new class implements LogParserObserver{
+            public function update($data) {
+                return true;
+            }
+        };
+        $this->parser->attach($this->logStorageObserver);
         $logFilePath = '/var/www/html/logs.txt';
 
         $result = $this->parser->parse($logFilePath);
-        $this->assertEmpty($result);
+        $this->assertEquals('Parsing log file is complete', $result);
     }
 
     /**

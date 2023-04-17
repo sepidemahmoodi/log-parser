@@ -55,6 +55,7 @@ class MicroserviceLogFileParser
                     }
                 }
                 fclose($fileHandle);
+                return 'Parsing log file is complete';
             }
             throw new \Exception('Log file is not exist.', 404);
         } catch(\Exception $e) {
