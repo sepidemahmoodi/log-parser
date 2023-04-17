@@ -24,5 +24,8 @@ DB_PASSWORD=mypass`
  - first of all clone the project : `git clone git@github.com:sepidemahmoodi/log-parser.git`
  - in root of project run : docker compose up -d
  
- ## Api description : 
+## Console Command :
+ - you should use php artisan log:sotre command and enter logFile path, in this project logFile path is `/var/www/html/logs.txt`
+ 
+## Api description : 
  - Route of Api found with this url :(localhost:8000/public/api/logs/count) then you can add query params like service_name, http_status_code, start_date and end_date for filtering the query result.
