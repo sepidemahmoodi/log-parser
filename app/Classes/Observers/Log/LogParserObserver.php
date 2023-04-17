@@ -1,7 +1,7 @@
 <?php
 namespace App\Classes\Observers\Log;
 
-interface DataObserver
+interface LogParserObserver
 {
     public function update(array $data);
 }

@@ -2,7 +2,7 @@
 namespace App\Classes\LogParsers;
 
 use App\Classes\DateFormatter\DateConverterInterface;
-use App\Classes\Observers\Log\DataObserver;
+use App\Classes\Observers\Log\LogParserObserver;
 
 class MicroserviceLogFileParser
 {
@@ -20,12 +20,12 @@ class MicroserviceLogFileParser
         $this->dateConverter = $dateConverter;
     }
 
-    public function attach(DataObserver $observer)
+    public function attach(LogParserObserver $observer)
     {
         $this->observers[] = $observer;
     }
 
-    public function detach(DataObserver $observer)
+    public function detach(LogParserObserver $observer)
     {
         $key = array_search($observer, $this->observers, true);
 

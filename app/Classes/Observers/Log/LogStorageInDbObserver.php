@@ -3,7 +3,7 @@ namespace App\Classes\Observers\Log;
 
 use App\Jobs\LogStoreProcess;
 
-class DatabaseWriter implements DataObserver
+class LogStorageInDbObserver implements LogParserObserver
 {
     public function update(array $data)
     {
