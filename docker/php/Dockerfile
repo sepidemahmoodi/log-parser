@@ -1,5 +1,7 @@
 FROM php:8.1-apache
 
+WORKDIR /var/www/html
+
 RUN a2enmod rewrite
 
 RUN docker-php-ext-install pdo_mysql
@@ -33,5 +35,7 @@ RUN docker-php-ext-install zip curl bcmath pdo iconv xml gd sockets soap
 
 ENV TZ=Asia/Tehran
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer 
+RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 RUN rm -rf composer-setup.php && composer config --global repos.packagist composer https://packagist.org
+
+RUN composer install
