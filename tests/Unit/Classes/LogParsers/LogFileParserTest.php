@@ -3,7 +3,7 @@ namespace tests\Unit\Classes\LogParsers;
 
 use App\Classes\DateFormatter\ConvertToLaravelFormat;
 use App\Classes\LogParsers\MicroserviceLogFileParser;
-use App\Classes\Observers\Log\DataObserver;
+use App\Classes\Observers\Log\LogParserObserver;
 use Tests\TestCase;
 
 class LogFileParserTest extends TestCase
@@ -25,7 +25,7 @@ class LogFileParserTest extends TestCase
      */
     public function testParse()
     {
-        $dataObserverMock = \Mockery::mock(DataObserver::class)
+        $dataObserverMock = \Mockery::mock(LogParserObserver::class)
             ->shouldReceive('update')
             ->once()
             ->with([
