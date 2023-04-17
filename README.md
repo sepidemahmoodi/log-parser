@@ -11,21 +11,20 @@ ofcourse i choose another design pattern for implementing this project and that 
 - We have Dockerfile of php and mysql config folders in docker folder that ignored in .gitignore file and docker-compose.yml file is exist for lunching project environment.
 - I think we can use Repository pattern for log and add count query in it then inject to controller and use it in count api,but unfortunately i cant understand correctly this design pattern so i decided to didnt use that. 
 
-
-## Laravel .env config for database connection :
-`DB_CONNECTION=mysql
-DB_HOST=mysql
-DB_PORT=3306
-DB_DATABASE=bugloos
-DB_USERNAME=root
-DB_PASSWORD=mypass`
-
 ## Installation : 
  - first of all clone the project : `git clone git@github.com:sepidemahmoodi/log-parser.git`
  - in root of project run : docker compose up -d
+ - create .env file into your project then change database part : 
+    `DB_CONNECTION=mysql
+    DB_HOST=mysql
+    DB_PORT=3306
+    DB_DATABASE=bugloos
+    DB_USERNAME=root
+    DB_PASSWORD=mypass`
+- and run `php artisan key:generate` for generating key of your project.
  
 ## Console Command :
- - you should use php artisan log:sotre command and enter logFile path, in this project logFile path is `/var/www/html/logs.txt`
+ - you should use `php artisan log:sotre` command and enter logFile path, in this project logFile path is `/var/www/html/logs.txt`
  
 ## Api description : 
  - Route of Api found with this url :(localhost:8000/public/api/logs/count) then you can add query params like service_name, http_status_code, start_date and end_date for filtering the query result.
